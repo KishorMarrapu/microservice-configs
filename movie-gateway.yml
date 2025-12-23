@@ -1,0 +1,23 @@
+server:
+  port: 8066
+
+spring:
+  application:
+    name: movie-gateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8767/eureka
+  instance:
+    hostname: uniqueboy      # Match Docker hostname
+    prefer-ip-address: false # Use hostname like other services
+    port: 8066              # Match server port
