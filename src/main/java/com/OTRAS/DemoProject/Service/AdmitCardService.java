@@ -81,9 +81,9 @@ public class AdmitCardService {
 
                     .examCenter(examCenter)
 
-                    .collegeName("National Public College")
+                    .collegeName(" Vignan  College")
 
-                    .universityName("State Public University")
+                    .universityName("Vignan University")
 
                     .otrasId(payment.getOtrId())
 
@@ -237,14 +237,14 @@ public class AdmitCardService {
 
         for (PaymentSuccesfullData payment : payments) {
 
-            // ✅ Check if admit card already exists for this payment
+            //  Check if admit card already exists for this payment
             Optional<AdmitCard> existing = admitCardRepo.findByPaymentSuccesfullData(payment);
 
             AdmitCard admitCard;
             if (existing.isPresent()) {
                 admitCard = existing.get(); // use existing one
             } else {
-                // ✅ Create a new admit card for this successful payment
+                //  Create a new admit card for this successful payment
                 admitCard = AdmitCard.builder()
                         .examRollNo(payment.getExamRollNo())
                         .candidateName(payment.getCandidateProfile().getCandidateName())
@@ -388,51 +388,11 @@ public class AdmitCardService {
 
     }
  
-//    @Transactional(readOnly = true)
-//    public List<AdmitCardDTO> getAllAdmitCardsByCandidate(Long candidateProfileId) {
-//
-//        // ✅ Step 1: Fetch all SUCCESS payments for candidate profile
-//        List<PaymentSuccesfullData> payments =
-//            paymentRepo.findAllByCandidateProfile_IdAndPaymentStatus(candidateProfileId, "SUCCESS");
-//
-//        // ✅ Step 2: Validation — no payments found
-//        if (payments == null || payments.isEmpty()) {
-//            throw new ResponseStatusException(
-//                HttpStatus.NOT_FOUND,
-//                "No successful payment records found for candidate profile ID: " + candidateProfileId
-//            );
-//        }
-//
-//        List<AdmitCardDTO> admitCards = new ArrayList<>();
-//
-//        // ✅ Step 3: Loop and map admit cards
-//        for (PaymentSuccesfullData payment : payments) {
-//            admitCardRepo.findByPaymentSuccesfullData(payment).ifPresentOrElse(
-//                admitCard -> admitCards.add(mapToDTO(admitCard, payment)),
-//                () -> {
-//                    throw new ResponseStatusException(
-//                        HttpStatus.NOT_FOUND,
-//                        "Admit card not found for payment ID: " + payment.getId()
-//                    );
-//                }
-//            );
-//        }
-//
-//        // ✅ Step 4: Final Validation — all admit cards missing
-//        if (admitCards.isEmpty()) {
-//            throw new ResponseStatusException(
-//                HttpStatus.NOT_FOUND,
-//                "No admit cards generated yet for candidate profile ID: " + candidateProfileId
-//            );
-//        }
-//
-//        return admitCards;
-//    }
     
     @Transactional(readOnly = true)
     public List<AdmitCardDTO> getAllAdmitCardsByCandidate(Long candidateProfileId) {
 
-        // ✅ Step 1: Fetch all SUCCESS payments for candidate profile
+        //  Step 1: Fetch all SUCCESS payments for candidate profile
         List<PaymentSuccesfullData> payments =
             paymentRepo.findAllByCandidateProfile_IdAndPaymentStatus(candidateProfileId, "SUCCESS");
 
@@ -445,13 +405,13 @@ public class AdmitCardService {
 
         List<AdmitCardDTO> admitCards = new ArrayList<>();
 
-        // ✅ Step 2: Loop and collect only those that have AdmitCards
+        //  Step 2: Loop and collect only those that have AdmitCards
         for (PaymentSuccesfullData payment : payments) {
             admitCardRepo.findByPaymentSuccesfullData(payment)
                 .ifPresent(admitCard -> admitCards.add(mapToDTO(admitCard, payment)));
         }
 
-        // ✅ Step 3: If none found, return friendly message
+        //  Step 3: If none found, return friendly message
         if (admitCards.isEmpty()) {
             throw new ResponseStatusException(
                 HttpStatus.NOT_FOUND,

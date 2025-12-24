@@ -20,7 +20,9 @@ public class QuestionSetDTO {
 
     private String setName;
 
-    private List<QuestionDTO> questions;
+   // private List<QuestionDTO> questions;
+    
+    private List<QuestionCategoryDTO> categories;
 
 }
 

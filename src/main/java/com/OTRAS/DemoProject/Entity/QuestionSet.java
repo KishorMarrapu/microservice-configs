@@ -1,3 +1,4 @@
+
 package com.OTRAS.DemoProject.Entity;
  
 import java.util.List;
@@ -60,7 +61,7 @@ public class QuestionSet {
  
     @OneToMany(mappedBy = "questionSet", cascade = CascadeType.ALL, orphanRemoval = true)
 
-    private List<Question> questions;
+    private List<QuestionCategory> questionCategories;
 
 }
 

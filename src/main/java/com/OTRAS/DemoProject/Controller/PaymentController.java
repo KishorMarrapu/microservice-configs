@@ -26,6 +26,7 @@ import com.OTRAS.DemoProject.Entity.PaymentSuccesfullData;
 import com.OTRAS.DemoProject.Mapper.CandidateProfileMapper;
 import com.OTRAS.DemoProject.Repository.CandidateProfileRepository;
 import com.OTRAS.DemoProject.Repository.PaymentSuccesfullDataRepository;
+import com.OTRAS.DemoProject.Service.ExamAssignmentService;
 import com.OTRAS.DemoProject.Util.FileUploadUtility; // Assuming this utility exists
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stripe.Stripe;
@@ -40,6 +41,9 @@ import lombok.Setter;
 @RestController
 @RequestMapping("/api/payment")
 public class PaymentController {
+	
+	@Autowired
+	private ExamAssignmentService examAssignmentService;
 
     @Value("${stripe.secret.key}")
     private String stripeSecretKey;
@@ -129,6 +133,7 @@ public class PaymentController {
         
         dataRepository.save(data);
         
+        examAssignmentService.updateApplicationStatus(otrId, jobPostId, "APPLIED", "Application submitted successfully with exam roll no: " + rollNo);
         return ResponseEntity.ok("Application Submitted Successfully");
     }
     

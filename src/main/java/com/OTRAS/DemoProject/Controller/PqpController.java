@@ -1,20 +1,20 @@
 package com.OTRAS.DemoProject.Controller;
  
-import org.springframework.http.ResponseEntity;
-
-import org.springframework.web.bind.annotation.*;
-
-import org.springframework.web.multipart.MultipartFile;
- 
-import com.OTRAS.DemoProject.DTO.PqpRequestDTO;
-
-import com.OTRAS.DemoProject.Service.PqpService;
- 
 import java.io.IOException;
-
 import java.util.List;
-
 import java.util.Optional;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.OTRAS.DemoProject.DTO.PqpRequestDTO;
+import com.OTRAS.DemoProject.Service.PqpService;
  
 @RestController
 
@@ -36,7 +36,6 @@ public class PqpController {
     public ResponseEntity<String> uploadPqp(
 
             @RequestParam String jobCategory,
-
             @RequestParam String jobTitle,
 
             @RequestParam String languages,

@@ -19,7 +19,7 @@ import com.OTRAS.DemoProject.DTO.JobPostDto;
 import com.OTRAS.DemoProject.Service.JobPostService;
 
 @RestController
-@RequestMapping("/jobpost")
+@RequestMapping("/api/jobpost")
 public class JobPostController {
 
     @Autowired

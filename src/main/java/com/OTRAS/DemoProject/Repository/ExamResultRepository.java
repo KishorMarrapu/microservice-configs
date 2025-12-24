@@ -13,6 +13,9 @@ public interface ExamResultRepository extends JpaRepository<ExamResult, Long> {
 	ExamResult findByExamRollNo(String examRollNo);
     //Optional<ExamResult> findByExamIdAndOtrId(Long examId, String otrId);
     //List<ExamResult> findByOtrId(String otrId);
+
+	// Add to ExamResultRepository interface
+	List<ExamResult> findByQuestionPaperIdOrderByTotalScoreDesc(Long questionPaperId);
 }
 
 

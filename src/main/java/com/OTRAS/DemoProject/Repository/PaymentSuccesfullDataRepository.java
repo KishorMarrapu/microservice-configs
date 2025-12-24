@@ -38,5 +38,8 @@ public interface PaymentSuccesfullDataRepository extends JpaRepository<PaymentSu
     );
 
     List<PaymentSuccesfullData> findByCandidateProfile_Candidate_Id(Long candidateId);
+
+    @Query("SELECT p FROM PaymentSuccesfullData p WHERE p.otrId = :otrId")
+    PaymentSuccesfullData findByOtrIdForStatus(@Param("otrId") String otrId);
  
     }

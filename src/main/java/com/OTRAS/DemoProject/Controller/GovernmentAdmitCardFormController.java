@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping("/governmentAdmitCard")
+@RequestMapping("/api/governmentAdmitCard")
 @RequiredArgsConstructor
 public class GovernmentAdmitCardFormController {
 

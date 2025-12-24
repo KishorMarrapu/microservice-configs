@@ -49,10 +49,12 @@ public class Question {
     private String correctAnswer; 
  
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "question_category_id")
+    private QuestionCategory questionCategory;
 
-    @JoinColumn(name = "question_set_id")
-
-    private QuestionSet questionSet;
+    private Double marks = 1.0;           // +1 for correct
+    private Double negativeMarks = 0.33;  // -1/3 for wrong (SSC standard)
+    
 
 }
 
